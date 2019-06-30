@@ -1,0 +1,21 @@
+### SimpleGradleTemplate template
+## Jetbrains Template
+/.idea
+/*.iws
+/*.iml
+/*.ipr
+/out/
+/idea_modules/
+
+## Gradle template
+/.gradle/
+/build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+## Eclipse/VSCode
+/.classpath
+/.project
+/.settings
+/bin
