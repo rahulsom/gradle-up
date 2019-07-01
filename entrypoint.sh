@@ -11,6 +11,7 @@ readonly AUTH_HEADER="Authorization: Token $GITHUB_TOKEN"
 
 export BRANCH_NAME=gradle-up
 
+cd /tmp
 git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git work
 cd work/
 
@@ -35,7 +36,3 @@ git push -u origin $BRANCH_NAME
 
 cat /tmp/request.json
 curl -H "${AUTH_HEADER}" -d @/tmp/request.json https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls
-
-#curl -s "https://api.github.com/repos/$1/releases/latest" \
-#            | jq -r ".tag_name" \
-#            | python extractVersion.py
