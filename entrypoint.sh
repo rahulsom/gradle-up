@@ -28,8 +28,8 @@ git diff
 
 git add .
 
-git config --global user.email "${GITHUB_ACTOR}@githubactions.com"
-git config --global user.name "${GITHUB_ACTOR} GradleUp Action"
+git config user.email "${GITHUB_ACTOR}@githubactions.com"
+git config user.name "${GITHUB_ACTOR} GradleUp Action"
 
 git commit -F /tmp/commit.txt
 git push -u origin $BRANCH_NAME
