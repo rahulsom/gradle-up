@@ -18,21 +18,28 @@ cd work/
 git fetch --all
 
 if [[ $(git ls-remote --heads origin | grep -c "refs/heads/$BRANCH_NAME") = 1 ]]; then
-    git push origin :$BRANCH_NAME
+    git checkout :$BRANCH_NAME
+else
+    git checkout -b $BRANCH_NAME
 fi
 
-git checkout -b $BRANCH_NAME
 curl -s -H "${AUTH_HEADER}" ${LATEST_GRADLE_API} | groovy /gradleup.groovy
 
-git diff
+if ! git diff-index --quiet HEAD --; then
+    git diff
+    git add .
 
-git add .
+    git config user.email "${GITHUB_ACTOR}@githubactions.com"
+    git config user.name "${GITHUB_ACTOR} GradleUp Action"
 
-git config user.email "${GITHUB_ACTOR}@githubactions.com"
-git config user.name "${GITHUB_ACTOR} GradleUp Action"
+    if [[ $(git ls-remote --heads origin | grep -c "refs/heads/$BRANCH_NAME") = 1 ]]; then
+        git commit --amend -F /tmp/commit.txt
+        git push -u origin $BRANCH_NAME --force
+    else
+        git commit -F /tmp/commit.txt
+        git push -u origin $BRANCH_NAME
 
-git commit -F /tmp/commit.txt
-git push -u origin $BRANCH_NAME
-
-cat /tmp/request.json
-curl -H "${AUTH_HEADER}" -d @/tmp/request.json https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls
+        cat /tmp/request.json
+        curl -H "${AUTH_HEADER}" -d @/tmp/request.json https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls
+    fi
+fi
