@@ -5,7 +5,7 @@ def version = api.name.substring(1)
 def lines = new File("gradle/wrapper/gradle-wrapper.properties").readLines()
 for (int i = 0; i < lines.size(); i ++) {
     if (lines[i].startsWith('distributionUrl')) {
-        lines[i] = "distributionUrl=https\\://services.gradle.org/distributions/gradle-${version}-all.zip".toString()
+        lines[i] = "distributionUrl=https\\://services.gradle.org/distributions/gradle-${version}-bin.zip".toString()
     }
 }
 new File("gradle/wrapper/gradle-wrapper.properties").text = lines.join('\n') + '\n'
