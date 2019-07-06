@@ -18,7 +18,7 @@ cd work/
 git fetch --all
 
 if [[ $(git ls-remote --heads origin | grep -c "refs/heads/$BRANCH_NAME") = 1 ]]; then
-    git checkout :$BRANCH_NAME
+    git checkout $BRANCH_NAME
 else
     git checkout -b $BRANCH_NAME
 fi
