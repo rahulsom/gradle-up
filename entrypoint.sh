@@ -25,7 +25,7 @@ fi
 
 curl -s -H "${AUTH_HEADER}" ${LATEST_GRADLE_API} | groovy /gradleup.groovy
 
-if ! git diff-index --quiet HEAD --; then
+if [[ $(git diff | wc -l) != 0 ]]; then
     git diff
     git add .
 
