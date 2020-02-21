@@ -27,7 +27,7 @@ curl -s -H "${AUTH_HEADER}" ${LATEST_GRADLE_API} | groovy /gradleup.groovy
 
 if [[ $(git diff | wc -l) != 0 ]]; then
     git diff
-    git add .
+    git add ./gradle/wrapper/gradle-wrapper.properties
 
     git config user.email "${GITHUB_ACTOR}@githubactions.com"
     git config user.name "${GITHUB_ACTOR} GradleUp Action"
