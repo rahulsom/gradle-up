@@ -19,7 +19,7 @@ for (int i = 0; i < lines.size(); i++) {
 wrapperConfig.text = lines.join('\n') + '\n'
 
 new File('/tmp/commit.txt').text =
-        "Gradle wrapper updated to ${version}\n\n${api.body}"
+        "Update gradle wrapper to ${version}\n\n${api.body}"
 
 new File('/tmp/request.json').text =
         new JsonBuilder([
