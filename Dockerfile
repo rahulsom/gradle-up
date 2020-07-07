@@ -1,4 +1,4 @@
-FROM groovy:2.5-jdk8
+FROM groovy:jdk
 
 LABEL "com.github.actions.name"="Update Gradle Wrapper"
 LABEL "com.github.actions.description"="Updates gradle wrapper for repo"
