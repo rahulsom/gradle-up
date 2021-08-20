@@ -1,5 +1,7 @@
 # gradle-up
 
+**DEPRECATED: Use Renovate bot to get PRs for gradle wrapper and dependencies**
+
 Supports updating the gradle wrapper through a pull request.
 
 You can do something like this to use this action
